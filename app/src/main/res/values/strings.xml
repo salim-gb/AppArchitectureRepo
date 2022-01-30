@@ -1,7 +1,5 @@
 <resources>
     <string name="app_name">AppArchitecture</string>
-    <string name="zero">0</string>
-    <string name="counter_one">Счетчик 1</string>
-    <string name="counter_two">Счетчик 2</string>
-    <string name="counter_three">Счетчик 3</string>
+    <string name="is_authorized">User is authorized</string>
+    <string name="is_not_authorized">User is not authorized</string>
 </resources>

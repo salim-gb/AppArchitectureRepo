@@ -1,13 +1,12 @@
 package com.example.apparchitecture.mvp.user
 
-import com.example.apparchitecture.repository.GithubUserRepo
+import com.example.apparchitecture.model.User
 import com.github.terrakok.cicerone.Router
 import moxy.MvpPresenter
 
 class UserPresenter(
-    val userRepo: GithubUserRepo,
     val router: Router,
-    val userPosition: Int?
+    val user: User?
 ) : MvpPresenter<UserView>() {
 
     override fun onFirstViewAttach() {
@@ -16,10 +15,8 @@ class UserPresenter(
     }
 
     private fun getUser() {
-        val users = userRepo.getUsers()
-        userPosition?.let {
-            val user = users[userPosition]
-            viewState.displayUser(user)
+        user?.let {
+            viewState.displayUser(it)
         }
     }
 

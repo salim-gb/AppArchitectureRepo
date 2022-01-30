@@ -1,6 +1,5 @@
 package com.example.apparchitecture.repository
 
-import android.graphics.drawable.Drawable
 import com.example.apparchitecture.R
 import com.example.apparchitecture.model.GithubUser
 
@@ -19,9 +18,11 @@ class GithubUserRepo {
         }
 
     private val repositories =
-        (0..100).map { GithubUser(
-            randomImg,
-            "login$it")
+        (0..100).map {
+            GithubUser(
+                randomImg,
+                "login$it"
+            )
         }
 
     fun getUsers(): List<GithubUser> {
