@@ -2,22 +2,20 @@ package com.example.apparchitecture.ui
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.apparchitecture.App
 import com.example.apparchitecture.R
 import com.example.apparchitecture.databinding.UserFragmentBinding
-import com.example.apparchitecture.model.GithubUser
+import com.example.apparchitecture.model.User
 import com.example.apparchitecture.mvp.user.UserPresenter
 import com.example.apparchitecture.mvp.user.UserView
-import com.example.apparchitecture.repository.GithubUserRepo
 import com.example.apparchitecture.ui.common.BackButtonListener
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
 
-private const val USER_POSITION = "user_position"
+private const val USER = "user"
 
 class UserFragment :
     MvpAppCompatFragment(R.layout.user_fragment),
@@ -27,25 +25,25 @@ class UserFragment :
     private var _binding: UserFragmentBinding? = null
     private val binding get() = _binding!!
 
-    private var userPosition: Int? = null
+    private var user: User? = null
 
     companion object {
-        fun newInstance(position: Int) =
+        fun newInstance(user: User) =
             UserFragment().apply {
                 arguments = Bundle().apply {
-                    putInt(USER_POSITION, position)
+                    putParcelable(USER, user)
                 }
             }
     }
 
     val presenter: UserPresenter by moxyPresenter {
-        UserPresenter(GithubUserRepo(), App.instance.router, userPosition)
+        UserPresenter(App.instance.router, user)
     }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
         arguments?.let {
-            userPosition = it.getInt(USER_POSITION)
+            user = it.getParcelable(USER)
         }
     }
 
@@ -58,9 +56,14 @@ class UserFragment :
         return binding.root
     }
 
-    override fun displayUser(user: GithubUser) {
-        binding.userImage.setImageResource(user.img)
-        binding.tvLogin.text = user.login
+    override fun displayUser(user: User) = with(binding) {
+        userImage.setImageResource(user.img)
+        tvLogin.text = user.login
+        tvAuthorized.text = if (user.isAuthorized) {
+            getString(R.string.is_authorized)
+        } else {
+            getString(R.string.is_not_authorized)
+        }
     }
 
     override fun backPressed() = presenter.backPressed()

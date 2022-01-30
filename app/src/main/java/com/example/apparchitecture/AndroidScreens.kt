@@ -1,5 +1,6 @@
 package com.example.apparchitecture
 
+import com.example.apparchitecture.model.User
 import com.example.apparchitecture.ui.UserFragment
 import com.example.apparchitecture.ui.UsersFragment
 import com.github.terrakok.cicerone.Screen
@@ -10,7 +11,7 @@ class AndroidScreens: IScreens {
         return FragmentScreen { UsersFragment.newInstance() }
     }
 
-    override fun user(position: Int): Screen {
-        return FragmentScreen { UserFragment.newInstance(position) }
+    override fun user(user: User): Screen {
+        return FragmentScreen { UserFragment.newInstance(user) }
     }
 }
