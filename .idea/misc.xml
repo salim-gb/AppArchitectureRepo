@@ -5,7 +5,9 @@
       <map>
         <entry key="..\:/Users/Salim/AndroidStudioProjects/GeekBrains/AppArchitecture/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/Salim/AndroidStudioProjects/GeekBrains/AppArchitecture/app/src/main/res/layout/activtiy_main.xml" value="0.1388888888888889" />
+        <entry key="..\:/Users/Salim/AndroidStudioProjects/GeekBrains/AppArchitecture/app/src/main/res/layout/fragment_users.xml" value="0.17806484295845998" />
         <entry key="..\:/Users/Salim/AndroidStudioProjects/GeekBrains/AppArchitecture/app/src/main/res/layout/item_user.xml" value="0.1" />
+        <entry key="..\:/Users/Salim/AndroidStudioProjects/GeekBrains/AppArchitecture/app/src/main/res/layout/item_user_placeholder.xml" value="0.25" />
         <entry key="..\:/Users/Salim/AndroidStudioProjects/GeekBrains/AppArchitecture/app/src/main/res/layout/user_fragment.xml" value="0.18" />
       </map>
     </option>

@@ -1,32 +1,17 @@
-package com.example.apparchitecture.ui
+package com.example.apparchitecture.ui.main
 
-import android.os.Bundle
-import com.example.apparchitecture.AndroidScreens
 import com.example.apparchitecture.App
 import com.example.apparchitecture.R
-import com.example.apparchitecture.databinding.ActivtiyMainBinding
-import com.example.apparchitecture.mvp.main.MainPresenter
-import com.example.apparchitecture.mvp.main.MainView
 import com.example.apparchitecture.ui.common.BackButtonListener
 import com.github.terrakok.cicerone.androidx.AppNavigator
 import moxy.MvpAppCompatActivity
 import moxy.ktx.moxyPresenter
 
-class MainActivity : MvpAppCompatActivity(), MainView {
+class MainActivity : MvpAppCompatActivity(R.layout.activtiy_main), MainView {
 
-    val navigator = AppNavigator(this, R.id.container)
+    private val navigator = AppNavigator(this, R.id.container)
 
-    private val presenter by moxyPresenter {
-        MainPresenter(App.instance.router, AndroidScreens())
-    }
-
-    private lateinit var binding: ActivtiyMainBinding
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = ActivtiyMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-    }
+    private val presenter by moxyPresenter { MainPresenter(App.instance.router) }
 
     override fun onResumeFragments() {
         super.onResumeFragments()
@@ -40,6 +25,7 @@ class MainActivity : MvpAppCompatActivity(), MainView {
 
     override fun onBackPressed() {
         super.onBackPressed()
+
         supportFragmentManager.fragments.forEach {
             if (it is BackButtonListener && it.backPressed()) {
                 return

@@ -1,6 +1,6 @@
-package com.example.apparchitecture.mvp.users
+package com.example.apparchitecture.ui.users
 
-import com.example.apparchitecture.model.GithubUser
+import com.example.apparchitecture.domain.model.GithubUserModel
 import moxy.MvpView
 import moxy.viewstate.strategy.AddToEndSingleStrategy
 import moxy.viewstate.strategy.StateStrategyType
@@ -8,5 +8,7 @@ import moxy.viewstate.strategy.StateStrategyType
 @StateStrategyType(AddToEndSingleStrategy::class)
 interface UsersView : MvpView {
     fun init()
-    fun updateList()
+    fun updateList(users: List<GithubUserModel>)
+    fun showError(message: String?)
+    fun stopShimmer()
 }
