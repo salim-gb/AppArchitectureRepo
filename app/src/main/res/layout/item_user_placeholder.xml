@@ -9,14 +9,14 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:padding="@dimen/dimen_tiny_4"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dimen_tiny_4">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/user_image"
             android:layout_width="@dimen/dimen_large_50"
             android:layout_height="@dimen/dimen_large_50"
-            android:background="@color/grey_300"
+            android:background="@color/grey_400"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginStart="@dimen/dimen_medium_16"
-            android:background="@color/grey_300"
+            android:background="@color/grey_400"
             app:layout_constraintBottom_toBottomOf="parent"
 
             app:layout_constraintStart_toEndOf="@+id/user_image"

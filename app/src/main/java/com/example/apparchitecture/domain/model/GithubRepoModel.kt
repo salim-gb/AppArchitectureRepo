@@ -6,9 +6,12 @@ import com.google.gson.annotations.Expose
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class GithubUserModel(
+data class GithubRepoModel(
+    @Expose val name: String,
     @Expose val id: Long,
-    @Expose val login: String,
-    @Expose val avatarUrl: String? = null,
-    @Expose val reposUrl: String
+    @Expose val owner: Owner,
+    @Expose val description: String? = null,
+    @Expose val forks: Int,
+    @Expose val visibility: Boolean,
+    @Expose val language: String? = null
 ) : Parcelable, ListItem

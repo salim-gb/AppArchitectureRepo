@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/dimen_huge_150"
+    android:layout_height="@dimen/dimen_medium_30"
+    android:layout_margin="@dimen/dimen_tiny_4"
+    android:backgroundTint="@color/grey_400"
+    android:foreground="?attr/selectableItemBackground">
+
+</com.google.android.material.card.MaterialCardView>
