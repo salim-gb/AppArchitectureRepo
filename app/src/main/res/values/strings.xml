@@ -2,4 +2,10 @@
     <string name="app_name">AppArchitecture</string>
     <string name="is_authorized">User is authorized</string>
     <string name="is_not_authorized">User is not authorized</string>
+    <string name="repo_name">Repository name: %s</string>
+    <string name="language">Language: %s</string>
+    <string name="visibility">Visibility: %s</string>
+    <string name="forks">Forks: %s</string>
+    <string name="description">Description: %s</string>
+    <string name="login">Login: %s</string>
 </resources>

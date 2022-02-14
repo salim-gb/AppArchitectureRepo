@@ -12,7 +12,6 @@ import com.example.apparchitecture.databinding.FragmentUsersBinding
 import com.example.apparchitecture.domain.model.GithubUserModel
 import com.example.apparchitecture.domain.users.GithubUsersRepository
 import com.example.apparchitecture.network.ApiHolder
-import com.example.apparchitecture.network.NetworkStatus
 import com.example.apparchitecture.ui.common.BackButtonListener
 import com.example.apparchitecture.ui.common.ImageLoaderImpl
 import moxy.MvpAppCompatFragment
@@ -24,6 +23,9 @@ class UsersFragment : MvpAppCompatFragment(), UsersView, BackButtonListener {
         fun newInstance() = UsersFragment()
     }
 
+    private var _binding: FragmentUsersBinding? = null
+    private val binding get() = _binding!!
+
     private val presenter: UsersPresenter by moxyPresenter {
         UsersPresenter(
             App.instance.router,
@@ -34,15 +36,10 @@ class UsersFragment : MvpAppCompatFragment(), UsersView, BackButtonListener {
     }
 
     private val adapter by lazy {
-        AdapterDelegate(listOf(UsersDelegate(ImageLoaderImpl()))) {
-
+        AdapterDelegate(listOf(UsersDelegate(ImageLoaderImpl()))) { user ->
+            presenter.onUserClicked(user as GithubUserModel)
         }
     }
-
-    private val networkStatus by lazy { NetworkStatus(requireContext()) }
-
-    private var _binding: FragmentUsersBinding? = null
-    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -51,16 +48,6 @@ class UsersFragment : MvpAppCompatFragment(), UsersView, BackButtonListener {
     ): View {
         _binding = FragmentUsersBinding.inflate(inflater, container, false)
         return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        networkStatus.networkStatusSubject.subscribe { isOnline ->
-            if (isOnline) {
-                presenter.loadData()
-            }
-        }
     }
 
     override fun init() {

@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="dimen_small_12">12dp</dimen>
-    <dimen name="dimen_large_50">50dp</dimen>
-    <dimen name="dimen_medium_16">16dp</dimen>
     <dimen name="dimen_tiny_4">4dp</dimen>
-    <dimen name="dimen_large_200">200dp</dimen>
+    <dimen name="dimen_small_12">12dp</dimen>
+    <dimen name="dimen_medium_16">16dp</dimen>
+    <dimen name="dimen_medium_30">30dp</dimen>
+    <dimen name="dimen_large_50">50dp</dimen>
+    <dimen name="dimen_large_100">100dp</dimen>
+    <dimen name="dimen_huge_150">150dp</dimen>
+    <dimen name="dimen_huge_200">200dp</dimen>
+    <dimen name="dimen_huge_250">250dp</dimen>
 </resources>

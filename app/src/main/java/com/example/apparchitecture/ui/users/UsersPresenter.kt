@@ -1,6 +1,8 @@
 package com.example.apparchitecture.ui.users
 
+import com.example.apparchitecture.domain.model.GithubUserModel
 import com.example.apparchitecture.domain.users.IGitHubUsersRepository
+import com.example.apparchitecture.screens.AppScreens
 import com.github.terrakok.cicerone.Router
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
@@ -21,22 +23,25 @@ class UsersPresenter(
         loadData()
     }
 
-    fun loadData() {
+    private fun loadData() {
         usersRepository.getUsers()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 { users ->
-                    viewState.updateList(users)
                     viewState.stopShimmer()
+                    viewState.updateList(users)
                 }, {
                     viewState.showError(it.message)
                 }
             )
     }
 
+    fun onUserClicked(githubUser: GithubUserModel) {
+        router.navigateTo(AppScreens.reposScreen(githubUser))
+    }
+
     fun backPressed(): Boolean {
-        router.exit()
         return true
     }
 }
