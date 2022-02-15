@@ -2,7 +2,6 @@ package com.example.apparchitecture.ui.repos
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +12,7 @@ import com.example.apparchitecture.adapter.AdapterDelegate
 import com.example.apparchitecture.databinding.FragmentReposBinding
 import com.example.apparchitecture.domain.model.GithubRepoModel
 import com.example.apparchitecture.domain.model.GithubUserModel
-import com.example.apparchitecture.domain.repos.GithubRepoRepository
+import com.example.apparchitecture.domain.repos.GithubReposRepository
 import com.example.apparchitecture.network.ApiHolder
 import com.example.apparchitecture.network.NetworkStatus
 import com.example.apparchitecture.ui.common.BackButtonListener
@@ -32,7 +31,11 @@ class ReposFragment : MvpAppCompatFragment(R.layout.fragment_repos), ReposView, 
     private val presenter by moxyPresenter {
         ReposPresenter(
             githubUser,
-            GithubRepoRepository(ApiHolder.gitHubApiService),
+            GithubReposRepository(
+                ApiHolder.gitHubApiService,
+                App.instance.database.reposDao,
+                NetworkStatus(requireContext())
+            ),
             App.instance.router
         )
     }
@@ -78,7 +81,7 @@ class ReposFragment : MvpAppCompatFragment(R.layout.fragment_repos), ReposView, 
         _binding = null
     }
 
-    override fun backPressed():Boolean {
+    override fun backPressed(): Boolean {
         presenter.backPressed()
         return true
     }

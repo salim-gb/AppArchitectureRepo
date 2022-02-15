@@ -1,6 +1,7 @@
 package com.example.apparchitecture
 
 import android.app.Application
+import com.example.apparchitecture.db.GithubDatabase
 import com.github.terrakok.cicerone.Cicerone
 import com.github.terrakok.cicerone.Router
 
@@ -21,6 +22,10 @@ class App : Application() {
 
     val router
         get() = cicerone.router
+
+    val database by lazy {
+        GithubDatabase.getDatabase(this)
+    }
 
     override fun onCreate() {
         super.onCreate()

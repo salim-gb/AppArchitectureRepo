@@ -11,4 +11,4 @@ data class Owner(
     @Expose val ownerId: Long,
     @Expose val login: String,
     @Expose val avatarUrl: String? = null
-): Parcelable
+) : Parcelable

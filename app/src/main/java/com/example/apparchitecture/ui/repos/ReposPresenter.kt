@@ -43,7 +43,7 @@ class ReposPresenter(
         router.navigateTo(AppScreens.repoDetailsScreen(repo))
     }
 
-    fun backPressed(): Boolean {
-        return true
+    fun backPressed() {
+        router.exit()
     }
 }

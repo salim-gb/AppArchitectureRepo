@@ -12,6 +12,7 @@ import com.example.apparchitecture.databinding.FragmentUsersBinding
 import com.example.apparchitecture.domain.model.GithubUserModel
 import com.example.apparchitecture.domain.users.GithubUsersRepository
 import com.example.apparchitecture.network.ApiHolder
+import com.example.apparchitecture.network.NetworkStatus
 import com.example.apparchitecture.ui.common.BackButtonListener
 import com.example.apparchitecture.ui.common.ImageLoaderImpl
 import moxy.MvpAppCompatFragment
@@ -30,7 +31,9 @@ class UsersFragment : MvpAppCompatFragment(), UsersView, BackButtonListener {
         UsersPresenter(
             App.instance.router,
             GithubUsersRepository(
-                ApiHolder.gitHubApiService
+                ApiHolder.gitHubApiService,
+                App.instance.database.userDao,
+                NetworkStatus(requireContext())
             )
         )
     }
