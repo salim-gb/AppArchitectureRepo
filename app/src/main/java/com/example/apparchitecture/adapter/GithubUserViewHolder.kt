@@ -28,6 +28,7 @@ class GithubUserViewHolder private constructor(
 
         with(binding) {
             githubUser.apply {
+
                 avatarUrl?.let { url ->
                     imageLoader.loadInto(url, userImage)
                 }

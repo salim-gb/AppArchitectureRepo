@@ -24,13 +24,12 @@ class MainActivity : MvpAppCompatActivity(R.layout.activtiy_main), MainView {
     }
 
     override fun onBackPressed() {
-        super.onBackPressed()
-
         supportFragmentManager.fragments.forEach {
             if (it is BackButtonListener && it.backPressed()) {
                 return
+            } else {
+                super.onBackPressed()
             }
-            presenter.backClicked()
         }
     }
 }

@@ -41,7 +41,7 @@ class UsersPresenter(
         router.navigateTo(AppScreens.reposScreen(githubUser))
     }
 
-    fun backPressed(): Boolean {
-        return true
+    fun backPressed() {
+        router.exit()
     }
 }

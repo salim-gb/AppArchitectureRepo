@@ -22,7 +22,7 @@ class RepoDetailsPresenter(
         }
     }
 
-    fun backPressed(): Boolean {
-        return true
+    fun backPressed() {
+        router.exit()
     }
 }
