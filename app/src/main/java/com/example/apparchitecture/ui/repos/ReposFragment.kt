@@ -10,6 +10,7 @@ import com.example.apparchitecture.App
 import com.example.apparchitecture.R
 import com.example.apparchitecture.adapter.AdapterDelegate
 import com.example.apparchitecture.databinding.FragmentReposBinding
+import com.example.apparchitecture.db.cache.GithubRepositoriesCache
 import com.example.apparchitecture.domain.model.GithubRepoModel
 import com.example.apparchitecture.domain.model.GithubUserModel
 import com.example.apparchitecture.domain.repos.GithubReposRepository
@@ -33,7 +34,7 @@ class ReposFragment : MvpAppCompatFragment(R.layout.fragment_repos), ReposView, 
             githubUser,
             GithubReposRepository(
                 ApiHolder.gitHubApiService,
-                App.instance.database.reposDao,
+                GithubRepositoriesCache(App.instance.database.reposDao),
                 NetworkStatus(requireContext())
             ),
             App.instance.router

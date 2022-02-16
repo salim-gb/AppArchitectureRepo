@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.apparchitecture.App
 import com.example.apparchitecture.adapter.AdapterDelegate
 import com.example.apparchitecture.databinding.FragmentUsersBinding
+import com.example.apparchitecture.db.cache.GithubUsersCache
 import com.example.apparchitecture.domain.model.GithubUserModel
 import com.example.apparchitecture.domain.users.GithubUsersRepository
 import com.example.apparchitecture.network.ApiHolder
@@ -32,7 +33,7 @@ class UsersFragment : MvpAppCompatFragment(), UsersView, BackButtonListener {
             App.instance.router,
             GithubUsersRepository(
                 ApiHolder.gitHubApiService,
-                App.instance.database.userDao,
+                GithubUsersCache(App.instance.database.userDao),
                 NetworkStatus(requireContext())
             )
         )
