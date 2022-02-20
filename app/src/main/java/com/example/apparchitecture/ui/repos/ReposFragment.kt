@@ -10,12 +10,8 @@ import com.example.apparchitecture.App
 import com.example.apparchitecture.R
 import com.example.apparchitecture.adapter.AdapterDelegate
 import com.example.apparchitecture.databinding.FragmentReposBinding
-import com.example.apparchitecture.db.cache.GithubRepositoriesCache
 import com.example.apparchitecture.domain.model.GithubRepoModel
 import com.example.apparchitecture.domain.model.GithubUserModel
-import com.example.apparchitecture.domain.repos.GithubReposRepository
-import com.example.apparchitecture.network.ApiHolder
-import com.example.apparchitecture.network.NetworkStatus
 import com.example.apparchitecture.ui.common.BackButtonListener
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
@@ -30,15 +26,7 @@ class ReposFragment : MvpAppCompatFragment(R.layout.fragment_repos), ReposView, 
     private var githubUser: GithubUserModel? = null
 
     private val presenter by moxyPresenter {
-        ReposPresenter(
-            githubUser,
-            GithubReposRepository(
-                ApiHolder.gitHubApiService,
-                GithubRepositoriesCache(App.instance.database.reposDao),
-                NetworkStatus(requireContext())
-            ),
-            App.instance.router
-        )
+        App.instance.appComponent.provideReposPresenterFactory().presenter(githubUser)
     }
 
     private val adapter by lazy {

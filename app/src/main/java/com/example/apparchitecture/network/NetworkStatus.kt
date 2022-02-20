@@ -25,12 +25,12 @@ class NetworkStatus(context: Context) {
                 }
 
                 override fun onLost(network: Network) {
-                    super.onLost(network)
+//                    super.onLost(network)
                     networkStatusSubject.onNext(false)
                 }
 
                 override fun onUnavailable() {
-                    super.onUnavailable()
+//                    super.onUnavailable()
                     networkStatusSubject.onNext(false)
                 }
             }
