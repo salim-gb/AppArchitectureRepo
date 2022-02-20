@@ -1,30 +1,21 @@
 package com.example.apparchitecture
 
 import android.app.Application
-import com.example.apparchitecture.db.GithubDatabase
-import com.github.terrakok.cicerone.Cicerone
-import com.github.terrakok.cicerone.Router
+import com.example.apparchitecture.di.component.DaggerAppComponent
+import com.example.apparchitecture.di.modules.ContextModule
 
 class App : Application() {
+
+    val appComponent by lazy {
+        DaggerAppComponent.builder()
+            .contextModule(ContextModule(this))
+            .build()
+    }
 
     companion object {
         private var _instance: App? = null
         val instance
             get() = _instance!!
-    }
-
-    private val cicerone: Cicerone<Router> by lazy {
-        Cicerone.create()
-    }
-
-    val navigatorHolder
-        get() = cicerone.getNavigatorHolder()
-
-    val router
-        get() = cicerone.router
-
-    val database by lazy {
-        GithubDatabase.getDatabase(this)
     }
 
     override fun onCreate() {

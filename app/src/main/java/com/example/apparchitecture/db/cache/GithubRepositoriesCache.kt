@@ -4,8 +4,9 @@ import com.example.apparchitecture.db.dao.ReposDao
 import com.example.apparchitecture.db.entity.GithubRepoEntity
 import com.example.apparchitecture.domain.model.GithubRepoModel
 import io.reactivex.rxjava3.core.Single
+import javax.inject.Inject
 
-class GithubRepositoriesCache(
+class GithubRepositoriesCache @Inject constructor(
     private val repoDao: ReposDao
 ) : IGithubRepositoriesCache {
 

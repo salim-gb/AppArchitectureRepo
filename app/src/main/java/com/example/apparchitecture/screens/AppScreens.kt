@@ -7,16 +7,22 @@ import com.example.apparchitecture.ui.repos.ReposFragment
 import com.example.apparchitecture.ui.users.UsersFragment
 import com.github.terrakok.cicerone.androidx.FragmentScreen
 
-object AppScreens {
-    fun usersScreen() = FragmentScreen {
+interface IScreens {
+    fun usersScreen(): FragmentScreen
+    fun reposScreen(user: GithubUserModel): FragmentScreen
+    fun repoDetailsScreen(repo: GithubRepoModel): FragmentScreen
+}
+
+class AppScreens : IScreens {
+    override fun usersScreen() = FragmentScreen {
         UsersFragment.newInstance()
     }
 
-    fun reposScreen(user: GithubUserModel) = FragmentScreen {
+    override fun reposScreen(user: GithubUserModel) = FragmentScreen {
         ReposFragment.newInstance(user)
     }
 
-    fun repoDetailsScreen(repo: GithubRepoModel) = FragmentScreen {
+    override fun repoDetailsScreen(repo: GithubRepoModel) = FragmentScreen {
         RepoDetailsFragment.newInstance(repo)
     }
 }

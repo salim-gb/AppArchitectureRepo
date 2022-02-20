@@ -1,12 +1,12 @@
 package com.example.apparchitecture.db.cache
 
-import android.util.Log
 import com.example.apparchitecture.db.dao.UserDao
 import com.example.apparchitecture.db.entity.GithubUserEntity
 import com.example.apparchitecture.domain.model.GithubUserModel
 import io.reactivex.rxjava3.core.Single
+import javax.inject.Inject
 
-class GithubUsersCache(
+class GithubUsersCache @Inject constructor(
     private val userDao: UserDao
 ) : IGithubUsersCache {
 
