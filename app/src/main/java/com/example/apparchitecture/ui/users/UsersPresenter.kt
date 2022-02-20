@@ -1,7 +1,8 @@
 package com.example.apparchitecture.ui.users
 
+import com.example.apparchitecture.App
 import com.example.apparchitecture.domain.model.GithubUserModel
-import com.example.apparchitecture.domain.users.IGitHubUsersRepository
+import com.example.apparchitecture.domain.users.IGithubUsersRepository
 import com.example.apparchitecture.screens.IScreens
 import com.github.terrakok.cicerone.Router
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
@@ -11,7 +12,7 @@ import javax.inject.Inject
 
 class UsersPresenter @Inject constructor(
     private val router: Router,
-    private val usersRepository: IGitHubUsersRepository,
+    private val usersRepository: IGithubUsersRepository,
     private val screens: IScreens
 ) : MvpPresenter<UsersView>() {
 
@@ -21,8 +22,14 @@ class UsersPresenter @Inject constructor(
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
+
         viewState.init()
         loadData()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        App.instance.destroyUserScope()
     }
 
     private fun loadData() {

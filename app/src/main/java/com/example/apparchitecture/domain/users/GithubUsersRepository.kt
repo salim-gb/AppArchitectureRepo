@@ -11,7 +11,7 @@ class GithubUsersRepository @Inject constructor(
     private val gitHubApiService: GitHubApiService,
     private val usersCache: IGithubUsersCache,
     private val networkStatus: NetworkStatus
-) : IGitHubUsersRepository {
+) : IGithubUsersRepository {
 
     override fun getUsers(): Single<List<GithubUserModel>> = networkStatus.isOnlineSingle()
         .flatMap { isOnline ->

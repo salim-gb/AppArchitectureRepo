@@ -25,7 +25,8 @@ class RepoDetailsFragment : MvpAppCompatFragment(R.layout.fragment_details), Rep
     private var githubRepo: GithubRepoModel? = null
 
     private val presenter by moxyPresenter {
-        App.instance.appComponent.provideReposDetailsPresenterFactory().presenter(githubRepo)
+        App.instance.initRepoDetailsSubcomponent()
+        App.instance.repoDetailsSubcomponent?.provideRepoDetailPresenterFactory()?.presenter(githubRepo)!!
     }
 
     private val imageLoader by lazy {
