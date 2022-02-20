@@ -1,6 +1,7 @@
 package com.example.apparchitecture.ui.repos
 
 import android.util.Log
+import com.example.apparchitecture.App
 import com.example.apparchitecture.domain.model.GithubRepoModel
 import com.example.apparchitecture.domain.model.GithubUserModel
 import com.example.apparchitecture.domain.repos.IGithubReposRepository
@@ -25,6 +26,11 @@ class ReposPresenter @AssistedInject constructor(
 
         viewState.init()
         loadData()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        App.instance.destroyRepoScope()
     }
 
     private fun loadData() {

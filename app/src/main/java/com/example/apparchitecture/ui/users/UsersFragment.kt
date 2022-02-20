@@ -25,7 +25,8 @@ class UsersFragment : MvpAppCompatFragment(), UsersView, BackButtonListener {
     private val binding get() = _binding!!
 
     private val presenter: UsersPresenter by moxyPresenter {
-        App.instance.appComponent.provideUsersPresenter()
+        App.instance.initUserSubcomponent()
+        App.instance.userSubcomponent?.provideUsersPresenter()!!
     }
 
     private val adapter by lazy {

@@ -26,7 +26,8 @@ class ReposFragment : MvpAppCompatFragment(R.layout.fragment_repos), ReposView, 
     private var githubUser: GithubUserModel? = null
 
     private val presenter by moxyPresenter {
-        App.instance.appComponent.provideReposPresenterFactory().presenter(githubUser)
+        App.instance.initRepoSubcomponent()
+        App.instance.repoSubcomponent?.provideRepoPresenterFactory()?.presenter(githubUser)!!
     }
 
     private val adapter by lazy {

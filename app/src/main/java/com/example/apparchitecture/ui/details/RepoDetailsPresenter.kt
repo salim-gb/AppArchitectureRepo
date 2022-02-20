@@ -1,5 +1,6 @@
 package com.example.apparchitecture.ui.details
 
+import com.example.apparchitecture.App
 import com.example.apparchitecture.domain.model.GithubRepoModel
 import com.github.terrakok.cicerone.Router
 import dagger.assisted.Assisted
@@ -16,6 +17,11 @@ class RepoDetailsPresenter @AssistedInject constructor(
         super.onFirstViewAttach()
 
         showRepoDetails()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        App.instance.destroyRepoDetailsScope()
     }
 
     private fun showRepoDetails() {
